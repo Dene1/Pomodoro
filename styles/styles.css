@@ -1,0 +1,524 @@
+@charset "UTF-8";
+/**
+  Нормализация блочной модели
+ */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+ */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+ */
+body,
+:where(blockquote, figure, fieldset):where([class]) {
+  margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+ */
+:where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  padding: 0;
+  border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+ */
+:where(ul[class]) {
+  list-style: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+ */
+p {
+  --paragraphMarginBottom: 24px;
+  margin-block: 0;
+}
+
+/**
+  Внешний отступ вниз для параграфа без атрибута class,
+  который расположен не последним среди своих соседних элементов
+ */
+:where(p:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+  Упрощаем работу с изображениями и видео
+ */
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+ */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+   Пригодится в большинстве ситуаций
+   (когда, например, нужно будет "прижать" футер к низу сайта)
+  */
+  height: 100%;
+  /**
+   Убираем скачок интерфейса по горизонтали
+   при появлении / исчезновении скроллбара
+  */
+  scrollbar-gutter: stable;
+}
+
+/**
+  Плавный скролл
+ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+   Пригодится в большинстве ситуаций
+   (когда, например, нужно будет "прижать" футер к низу сайта)
+  */
+  min-height: 100%;
+  /**
+   Унифицированный интерлиньяж
+  */
+  line-height: 1.5;
+}
+
+/**
+  Нормализация высоты элемента ссылки при его инспектировании в DevTools
+ */
+a:where([class]) {
+  display: inline-flex;
+}
+
+/**
+  Курсор-рука при наведении на элемент
+ */
+button,
+label {
+  cursor: pointer;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+  (за исключением тех, у которых уже указан
+  атрибут fill со значением 'none' или начинается с 'url')
+ */
+:where([fill]:not([fill=none], [fill^=url])) {
+  fill: currentColor;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+  (за исключением тех, у которых уже указан
+  атрибут stroke со значением 'none')
+ */
+:where([stroke]:not([stroke=none], [stroke^=url])) {
+  stroke: currentColor;
+}
+
+/**
+  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+ */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+  Приведение рамок таблиц в классический 'collapse' вид
+ */
+:where(table) {
+  border-collapse: collapse;
+  border-color: currentColor;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+:root {
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-gray-5: #F2F2F2;
+  --color-gray-10: #E6E6E6;
+  --color-gray-20: #CCCCCC;
+  --color-gray-30: #B3B3B3;
+  --color-gray-40: #999999;
+  --color-gray-50: #808080;
+  --color-gray-60: #666666;
+  --color-gray-70: #4D4D4D;
+  --color-gray-80: #333333;
+  --color-gray-90: #1A1A1A;
+  --color-gray-95: #0D0D0D;
+  --color-red-5: #FFF2F2;
+  --color-red-10: #FFD9D9;
+  --color-red-20: #FFB0B0;
+  --color-red-30: #FF8F8F;
+  --color-red-40: #FF6E6E;
+  --color-red-50: #FF4C4C;
+  --color-red-60: #D13F3F;
+  --color-red-70: #A33131;
+  --color-red-80: #752323;
+  --color-red-90: #471515;
+  --color-red-95: #0D0404;
+  --color-green-5: #F2FFF5;
+  --color-green-10: #D9FAE1;
+  --color-green-20: #AAF0B9;
+  --color-green-30: #89E89E;
+  --color-green-40: #69E084;
+  --color-green-50: #4DDA6C;
+  --color-green-60: #3DB257;
+  --color-green-70: #2E8C43;
+  --color-green-80: #216630;
+  --color-green-90: #14401D;
+  --color-green-95: #040D06;
+  --color-blue-5: #F2F9FF;
+  --color-blue-10: #D9EFFF;
+  --color-blue-20: #B0DAFF;
+  --color-blue-30: #8FCBFF;
+  --color-blue-40: #6EBBFF;
+  --color-blue-50: #4CACFF;
+  --color-blue-60: #3F8DD1;
+  --color-blue-70: #316EA3;
+  --color-blue-80: #234F75;
+  --color-blue-90: #153047;
+  --color-blue-95: #04090D;
+  --color-white-alpha-5: #FFFFFFd;
+  --color-white-alpha-10: #FFFFFF26;
+  --color-white-alpha-20: #FFFFFF3d;
+  --color-white-alpha-30: #FFFFFF54;
+  --color-white-alpha-40: #FFFFFF6e;
+  --color-white-alpha-50: #FFFFFF85;
+  --color-white-alpha-60: #FFFFFF9e;
+  --color-white-alpha-70: #FFFFFFb5;
+  --color-white-alpha-80: #FFFFFFcf;
+  --color-white-alpha-90: #FFFFFFe6;
+  --color-white-alpha-95: #FFFFFF;
+  --color-black-alpha-5: #000000d;
+  --color-black-alpha-10: #00000026;
+  --color-black-alpha-20: #0000003d;
+  --color-black-alpha-30: #00000054;
+  --color-black-alpha-40: #0000006e;
+  --color-black-alpha-50: #00000085;
+  --color-black-alpha-60: #0000009e;
+  --color-black-alpha-70: #000000b5;
+  --color-black-alpha-80: #000000cf;
+  --color-black-alpha-90: #000000e6;
+  --color-black-alpha-95: #000000;
+  --color-red-alpha-5: #FF4C4Cd;
+  --color-red-alpha-10: #FF4C4C26;
+  --color-red-alpha-20: #FF4C4C3d;
+  --color-red-alpha-30: #FF4C4C54;
+  --color-red-alpha-40: #FF4C4C6e;
+  --color-red-alpha-50: #FF4C4C85;
+  --color-red-alpha-60: #FF4C4C9e;
+  --color-red-alpha-70: #FF4C4Cb5;
+  --color-red-alpha-80: #FF4C4Ccf;
+  --color-red-alpha-90: #FF4C4Ce6;
+  --color-red-alpha-95: #FF4C4C;
+  --color-green-alpha-5: #4DDA6Ed;
+  --color-green-alpha-10: #4DDA6E26;
+  --color-green-alpha-20: #4DDA6E3d;
+  --color-green-alpha-30: #4DDA6E54;
+  --color-green-alpha-40: #4DDA6E6e;
+  --color-green-alpha-50: #4DDA6E85;
+  --color-green-alpha-60: #4DDA6E9e;
+  --color-green-alpha-70: #4DDA6Eb5;
+  --color-green-alpha-80: #4DDA6Ecf;
+  --color-green-alpha-90: #4DDA6Ee6;
+  --color-green-alpha-95: #4DDA6E;
+  --color-blue-alpha-5: #4CACFFd;
+  --color-blue-alpha-10: #4CACFF26;
+  --color-blue-alpha-20: #4CACFF3d;
+  --color-blue-alpha-30: #4CACFF54;
+  --color-blue-alpha-40: #4CACFF6e;
+  --color-blue-alpha-50: #4CACFF85;
+  --color-blue-alpha-60: #4CACFF9e;
+  --color-blue-alpha-70: #4CACFFb5;
+  --color-blue-alpha-80: #4CACFFcf;
+  --color-blue-alpha-90: #4CACFFe6;
+  --color-blue-alpha-95: #4CACFF;
+  --border-radius: 4px;
+  --border-radius-medium: 8px;
+  --border-radius-large: 16px;
+  --border-radius-xlarge: 24px;
+  --border-radius-button: 32px;
+  --background-color: #191820;
+  --shadow: 0px 6px 0px #FFB4F8;
+  --font-family-base: "Fira Code", sans-serif;
+  --font-size-small: 12px;
+  --font-size-base: 16px;
+  --font-size-medium: 24px;
+  --font-size-large: 32px;
+  --font-size-xlarge: 40px;
+  --font-size-xxlarge: 48px;
+  --font-size-xxxlarge: 240px;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --color-primary: #C470DB;
+  --color-secondary: #FFB4F8;
+  --color-gray: #ABB2BF;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.28;
+  background-color: var(--color-red-5);
+}
+
+a,
+button,
+input,
+textarea,
+svg * {
+  transition-duration: 0.2s;
+}
+
+button {
+  all: unset;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+@font-face {
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../assets/fonts/FiraCode-Regular.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../assets/fonts/FiraCode-Medium.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(../assets/fonts/FiraCode-Bold.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(../assets/fonts/FiraCode-Light.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(../assets/fonts/FiraCode-Light.woff2) format("woff2");
+}
+.container {
+  max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
+
+@media (max-width: 480px) {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 481px) {
+  .visible-mobile {
+    display: none !important;
+  }
+}
+
+.header {
+  padding: 20px 0;
+}
+.header .header__container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.main {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.main__title {
+  border: 2px solid var(--color-red-90);
+  border-radius: var(--border-radius-large);
+  padding: 4px 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  background-color: var(--color-red-alpha-10);
+}
+.main__title__text {
+  font-size: var(--font-size-medium);
+  color: var(--color-red-90);
+}
+.main__title--active {
+  border-color: var(--color-red-5);
+  color: var(--color-red-5);
+}
+.main__title--active img {
+  filter: brightness(0) saturate(100%) invert(88%) sepia(12%) saturate(800%) hue-rotate(315deg);
+}
+.main__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.main__controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon {
+  margin: auto;
+  font-weight: var(--font-weight-bold);
+}
+
+.timer {
+  font-size: var(--font-size-xxxlarge);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-red-90);
+  text-align: center;
+  margin-top: 40px;
+}
+.timer--active {
+  color: var(--color-red-5);
+}
+
+.button {
+  border-radius: var(--border-radius-button);
+  cursor: pointer;
+}
+.button__main {
+  background-color: var(--color-red-5);
+  box-shadow: 0 0 1px rgba(var(--color-red-90), 0.25);
+  color: var(--color-red-90);
+  border-radius: var(--border-radius-xlarge);
+  min-width: 8rem;
+  min-height: 6rem;
+}
+.button__main--active {
+  background-color: var(--color-red-alpha-70);
+  box-shadow: 0 0 1px rgba(var(--color-red-10), 0.25);
+  color: var(--color-red-10);
+}
+.button__secondary {
+  background-color: var(--color-red-alpha-10);
+  border-radius: var(--border-radius-xlarge);
+  min-width: 5rem;
+  min-height: 5rem;
+  position: relative;
+}
+.button__secondary img {
+  margin: auto;
+  filter: brightness(0) saturate(100%) invert(14%) sepia(72%) saturate(800%) hue-rotate(340deg);
+}
+.button__secondary--active {
+  background-color: var(--color-red-alpha-10);
+}
+.button__secondary--active img {
+  filter: brightness(0) saturate(100%) invert(88%) sepia(12%) saturate(800%) hue-rotate(315deg);
+}
+
+.body-active {
+  background-color: var(--color-red-95);
+}
+
+.footer {
+  margin: 60px 0;
+}
+.footer__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--color-red-90);
+}
+.footer__text {
+  font-size: var(--font-size-small);
+}
+
+/*# sourceMappingURL=styles.css.map */

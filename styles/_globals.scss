@@ -1,0 +1,28 @@
+@use "./mixins" as *;
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  //color: var(--color-text);
+  line-height: 1.28;
+  background-color: var(--color-red-5);
+}
+
+a,
+button,
+input,
+textarea,
+svg * {
+  transition-duration: 0.2s;
+}
+
+button {
+  all: unset;
+  @include flex-center(true);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

@@ -1,0 +1,152 @@
+:root {
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+
+  // gray
+  --color-gray-5: #F2F2F2;
+  --color-gray-10: #E6E6E6;
+  --color-gray-20: #CCCCCC;
+  --color-gray-30: #B3B3B3;
+  --color-gray-40: #999999;
+  --color-gray-50: #808080;
+  --color-gray-60: #666666;
+  --color-gray-70: #4D4D4D;
+  --color-gray-80: #333333;
+  --color-gray-90: #1A1A1A;
+  --color-gray-95: #0D0D0D;
+
+  // red
+  --color-red-5: #FFF2F2;
+  --color-red-10: #FFD9D9;
+  --color-red-20: #FFB0B0;
+  --color-red-30: #FF8F8F;
+  --color-red-40: #FF6E6E;
+  --color-red-50: #FF4C4C;
+  --color-red-60: #D13F3F;
+  --color-red-70: #A33131;
+  --color-red-80: #752323;
+  --color-red-90: #471515;
+  --color-red-95: #0D0404;
+
+  // green
+  --color-green-5: #F2FFF5;
+  --color-green-10: #D9FAE1;
+  --color-green-20: #AAF0B9;
+  --color-green-30: #89E89E;
+  --color-green-40: #69E084;
+  --color-green-50: #4DDA6C;
+  --color-green-60: #3DB257;
+  --color-green-70: #2E8C43;
+  --color-green-80: #216630;
+  --color-green-90: #14401D;
+  --color-green-95: #040D06;
+
+  // blue
+  --color-blue-5: #F2F9FF;
+  --color-blue-10: #D9EFFF;
+  --color-blue-20: #B0DAFF;
+  --color-blue-30: #8FCBFF;
+  --color-blue-40: #6EBBFF;
+  --color-blue-50: #4CACFF;
+  --color-blue-60: #3F8DD1;
+  --color-blue-70: #316EA3;
+  --color-blue-80: #234F75;
+  --color-blue-90: #153047;
+  --color-blue-95: #04090D;
+
+  // white alpha
+  --color-white-alpha-5: #FFFFFFd;
+  --color-white-alpha-10: #FFFFFF26;
+  --color-white-alpha-20: #FFFFFF3d;
+  --color-white-alpha-30: #FFFFFF54;
+  --color-white-alpha-40: #FFFFFF6e;
+  --color-white-alpha-50: #FFFFFF85;
+  --color-white-alpha-60: #FFFFFF9e;
+  --color-white-alpha-70: #FFFFFFb5;
+  --color-white-alpha-80: #FFFFFFcf;
+  --color-white-alpha-90: #FFFFFFe6;
+  --color-white-alpha-95: #FFFFFF;
+
+  // black alpha
+  --color-black-alpha-5: #000000d;
+  --color-black-alpha-10: #00000026;
+  --color-black-alpha-20: #0000003d;
+  --color-black-alpha-30: #00000054;
+  --color-black-alpha-40: #0000006e;
+  --color-black-alpha-50: #00000085;
+  --color-black-alpha-60: #0000009e;
+  --color-black-alpha-70: #000000b5;
+  --color-black-alpha-80: #000000cf;
+  --color-black-alpha-90: #000000e6;
+  --color-black-alpha-95: #000000;
+
+  // red alpha
+  --color-red-alpha-5: #FF4C4Cd;
+  --color-red-alpha-10: #FF4C4C26;
+  --color-red-alpha-20: #FF4C4C3d;
+  --color-red-alpha-30: #FF4C4C54;
+  --color-red-alpha-40: #FF4C4C6e;
+  --color-red-alpha-50: #FF4C4C85;
+  --color-red-alpha-60: #FF4C4C9e;
+  --color-red-alpha-70: #FF4C4Cb5;
+  --color-red-alpha-80: #FF4C4Ccf;
+  --color-red-alpha-90: #FF4C4Ce6;
+  --color-red-alpha-95: #FF4C4C;
+
+  // green alpha
+  --color-green-alpha-5: #4DDA6Ed;
+  --color-green-alpha-10: #4DDA6E26;
+  --color-green-alpha-20: #4DDA6E3d;
+  --color-green-alpha-30: #4DDA6E54;
+  --color-green-alpha-40: #4DDA6E6e;
+  --color-green-alpha-50: #4DDA6E85;
+  --color-green-alpha-60: #4DDA6E9e;
+  --color-green-alpha-70: #4DDA6Eb5;
+  --color-green-alpha-80: #4DDA6Ecf;
+  --color-green-alpha-90: #4DDA6Ee6;
+  --color-green-alpha-95: #4DDA6E;
+
+
+  // blue alpha
+  --color-blue-alpha-5: #4CACFFd;
+  --color-blue-alpha-10: #4CACFF26;
+  --color-blue-alpha-20: #4CACFF3d;
+  --color-blue-alpha-30: #4CACFF54;
+  --color-blue-alpha-40: #4CACFF6e;
+  --color-blue-alpha-50: #4CACFF85;
+  --color-blue-alpha-60: #4CACFF9e;
+  --color-blue-alpha-70: #4CACFFb5;
+  --color-blue-alpha-80: #4CACFFcf;
+  --color-blue-alpha-90: #4CACFFe6;
+  --color-blue-alpha-95: #4CACFF;
+
+  --border-radius: 4px;
+  --border-radius-medium: 8px;
+  --border-radius-large: 16px;
+  --border-radius-xlarge: 24px;
+  --border-radius-button: 32px;
+
+  --background-color: #191820;
+
+  --shadow: 0px 6px 0px #FFB4F8;
+
+  --font-family-base: 'Fira Code', sans-serif;
+
+  --font-size-small: 12px;
+  --font-size-base: 16px;
+  --font-size-medium: 24px;
+  --font-size-large: 32px;
+  --font-size-xlarge: 40px;
+  --font-size-xxlarge: 48px;
+  --font-size-xxxlarge: 240px;
+
+
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  --color-primary: #C470DB;
+  --color-secondary: #FFB4F8;
+  --color-gray: #ABB2BF;
+}
