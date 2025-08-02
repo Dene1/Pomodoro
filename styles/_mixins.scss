@@ -1,5 +1,5 @@
 @mixin fluid-text($max: 48, $min: 16) {
-  font-size: clamp(#{$min}px, #{$max / 1440 * 100}vw,   #{$max}px);
+  font-size: clamp(#{$min}px, #{$max / 1440 * 100}vw,  #{$max}px);
 }
 
 @mixin reset-link {
@@ -40,14 +40,6 @@
   aspect-ratio: 1;
 }
 
-@mixin theme-color-icon($background: var(--color-red-5)) {
-  background-color: $background;
-  box-shadow: 0 0 1px rgba($background, .25);
-  color: #fff;
-}
-
-@mixin theme-color-text($background: var(--color-red-5), $color: var(--color-red-90)) {
-  background-color: $background;
-  box-shadow: 0 0 1px rgba($color, .25);
-  color: $color;
+@mixin shadow($color) {
+  box-shadow: 0 6px 0 $color;
 }

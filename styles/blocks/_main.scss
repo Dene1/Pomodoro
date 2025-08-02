@@ -6,28 +6,30 @@
   flex-direction: column;
   align-items: center;
 
-
   &__title {
-    border: 2px solid var(--color-red-90);
+    border: 2px solid var(--color-text);
     border-radius: var(--border-radius-large);
     padding: 4px 10px;
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 6px;
-    background-color: var(--color-red-alpha-10);
 
     &__text {
       font-size: var(--font-size-medium);
-      color: var(--color-red-90);
     }
+  }
 
-    &--active {
-      border-color: var(--color-red-5);
-      color: var(--color-red-5);
+  &__timer {
+    font-size: var(--font-size-xxxlarge);
+    font-weight: var(--font-weight-bold);
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-      img {
-        filter: brightness(0) saturate(100%) invert(88%) sepia(12%) saturate(800%) hue-rotate(315deg);
-      }
+    &__time {
+      line-height: 0.8;
     }
   }
 
@@ -42,40 +44,18 @@
     flex-direction: row;
     align-items: center;
     gap: 10px;
+    margin-top: 100px;
   }
 }
 
-.icon {
-  margin: auto;
-  font-weight: var(--font-weight-bold);
-}
-
-.timer {
-  font-size: var(--font-size-xxxlarge);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-red-90);
-  text-align: center;
-  margin-top: 40px;
-
-  &--active {
-    color: var(--color-red-5);
-  }
-}
 
 .button {
-  border-radius: var(--border-radius-button);
-  cursor: pointer;
-
-
   &__main {
-    @include theme-color-text;
+    background-color: var(--color-red-alpha-70);
     border-radius: var(--border-radius-xlarge);
     min-width: 8rem;
     min-height: 6rem;
-
-    &--active {
-      @include theme-color-text(var(--color-red-alpha-70),var(--color-red-10));
-    }
+    @include shadow(var(--shadow));
   }
 
   &__secondary {
@@ -83,23 +63,6 @@
     border-radius: var(--border-radius-xlarge);
     min-width: 5rem;
     min-height: 5rem;
-    position: relative;
-
-    img {
-      margin: auto;
-      filter: brightness(0) saturate(100%) invert(14%) sepia(72%) saturate(800%) hue-rotate(340deg);
-    }
-
-    &--active {
-      background-color: var(--color-red-alpha-10);
-
-      img {
-        filter: brightness(0) saturate(100%) invert(88%) sepia(12%) saturate(800%) hue-rotate(315deg);
-      }
-    }
+    @include shadow(var(--shadow));
   }
-}
-
-.body-active {
-  background-color: var(--color-red-95);
 }
