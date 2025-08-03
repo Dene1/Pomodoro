@@ -1,12 +1,27 @@
 @use "./mixins" as *;
+@use "./variables" as *;
 
 body {
-  font-family: var(--font-family-base);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-regular);
-  //color: var(--color-text);
   line-height: 1.28;
-  background-color: var(--color-red-5);
+  font-family: var(--font-family-base);
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+:root {
+  --color-background: var(--color-red-5);
+  --color-text: var(--color-red-90);
+  --svg-color: var(--color-red-90);
+  --shadow: var(--color-red-alpha-20);
+}
+
+.darkmode {
+  --color-background: var(--color-red-95);
+  --color-text: var(--color-red-10);
+  --svg-color: var(--color-red-10);
+  --shadow: var(--color-red-90);
 }
 
 a,
@@ -20,6 +35,13 @@ svg * {
 button {
   all: unset;
   @include flex-center(true);
+  cursor: pointer;
+
+  &:active {
+    transform: translateY(3px);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0),
+    inset 0 3px 5px rgba(0, 0, 0, 0);
+  }
 }
 
 a {
