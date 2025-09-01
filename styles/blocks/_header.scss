@@ -3,13 +3,13 @@
 
   &__container {
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    justify-content: space-between;
   }
 
   &__logo {
     width: 104px;
     height: 32px;
+    cursor: pointer;
   }
 
 }
