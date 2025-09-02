@@ -1,5 +1,5 @@
 import { TIME } from './constants'
-import { playSound } from './function'
+import { pomodoroTitle, shortTitle, longTitle, playSound } from './function'
 
 const resetButton = document.querySelector('.main__controls__reset')
 const nextButton = document.querySelector('.main__controls__next')
@@ -15,6 +15,7 @@ const counter = document.getElementById('counter')
 const pomodoro = document.getElementById('pomodoro-session')
 const short = document.getElementById('short-break')
 const long = document.getElementById('long-break')
+const chip = document.querySelector('.main__title')
 
 const pomodoroTime = TIME.WORK_TIME
 const shortBreak = TIME.SHORT_BREAK
@@ -24,16 +25,35 @@ let currentTime = null
 let defaultTimer = pomodoroTime
 let timeLeft = defaultTimer
 
-let pomodoroCount = 1
-
 const status = {
   state: 'pomodoro',
   isRunning: false
 }
 
-logo.addEventListener('click', () => {
-  window.location.reload()
-})
+//localhost
+
+const getItemsFromLocalStorage = () => {
+  const rawData = localStorage.getItem('timer')
+  if (!rawData) {
+    return []
+  }
+
+  try {
+    const parsedData = JSON.parse(rawData)
+    return parsedData ? parsedData : []
+  } catch {
+    console.error('Could not parse items from LocalStorage')
+    return []
+  }
+}
+
+let pomodoroCount =
+  getItemsFromLocalStorage() == null ? 1 : getItemsFromLocalStorage()
+
+const saveItemsToLocalStorage = () =>
+  localStorage.setItem('timer', JSON.stringify(pomodoroCount))
+
+logo.addEventListener('click', () => window.location.reload())
 
 // Buttons //
 
@@ -57,47 +77,47 @@ nextButton.addEventListener('click', () => {
 })
 
 pomodoro.addEventListener('click', () => {
+  chip.innerHTML = pomodoroTitle
   currentTime = pomodoroTime
   updateDisplay(currentTime)
   playSound()
 })
 
 short.addEventListener('click', () => {
+  chip.innerHTML = shortTitle
   currentTime = shortBreak
   updateDisplay(currentTime)
   playSound()
 })
 
 long.addEventListener('click', () => {
+  chip.innerHTML = longTitle
   currentTime = longBreak
   updateDisplay(currentTime)
   playSound()
 })
 
 // Counter
+
+counter.innerHTML = `#${pomodoroCount}`
+
+counter.addEventListener('click', () => {})
+
 function pomodoroRender(a) {
   a
     ? (counter.innerHTML = `#${++pomodoroCount}`)
     : (counter.innerHTML = `#${pomodoroCount}`)
-}
-
-pomodoroRender()
-
-function changeCounter() {
-  status.state === 'short' && pomodoroCount % 4 === 0
-    ? (status.state = 'long')
-    : (status.state = 'pomodoro')
+  saveItemsToLocalStorage()
 }
 
 // Timer //
 
-const checkStatus = () => {}
-
 function updateLogos() {
   const isDarkMode = document.body.classList.contains('darkmode')
-  textLogo.forEach((logo) => {
-    logo.src = isDarkMode ? logo.dataset.darkSrc : logo.dataset.lightSrc
-  })
+  textLogo.forEach(
+    (logo) =>
+      (logo.src = isDarkMode ? logo.dataset.darkSrc : logo.dataset.lightSrc)
+  )
 }
 
 function updateDisplay(timeLeft) {
@@ -121,7 +141,7 @@ function startTimer() {
       if (timeLeft <= 0) {
         clearInterval(defaultTimer)
         playSound(TIME.BREAK)
-        // switchMode();
+        switchMode()
       }
     }, 1000)
   } else {
@@ -145,7 +165,7 @@ function resetTimer() {
     status.isRunning = false
     updateDisplay(timeLeft)
   } else if (status.state === 'short') {
-    timeLeft = longBreak
+    timeLeft = shortBreak
     clearInterval(defaultTimer)
     updateLogos()
     startButton.textContent = 'Start'
@@ -170,6 +190,7 @@ function switchMode() {
     startButton.textContent = 'Start'
     status.isRunning = false
     updateDisplay(timeLeft)
+    chip.innerHTML = shortTitle
     status.state = 'short'
   } else if (status.state === 'short') {
     if ((pomodoroCount + 1) % 4 === 0) {
@@ -179,6 +200,7 @@ function switchMode() {
       startButton.textContent = 'Start'
       status.isRunning = false
       updateDisplay(timeLeft)
+      chip.innerHTML = longTitle
       status.state = 'long'
     } else {
       timeLeft = pomodoroTime
@@ -188,6 +210,7 @@ function switchMode() {
       status.isRunning = false
       updateDisplay(timeLeft)
       pomodoroRender(1)
+      chip.innerHTML = pomodoroTitle
       status.state = 'pomodoro'
     }
   } else if (status.state === 'long') {
@@ -197,32 +220,10 @@ function switchMode() {
     startButton.textContent = 'Start'
     status.isRunning = false
     updateDisplay(timeLeft)
+    chip.innerHTML = pomodoroTitle
     status.state = 'pomodoro'
     pomodoroRender(1)
   }
-}
-
-console.log(pomodoroCount)
-
-//localhost
-
-const getItemsFromLocalStorage = () => {
-  const rawData = localStorage.getItem('timer')
-  if (!rawData) {
-    return []
-  }
-
-  try {
-    const parsedData = JSON.parse(rawData)
-    return Array.isArray(parsedData) ? parsedData : []
-  } catch {
-    console.error('Could not parse items from LocalStorage')
-    return []
-  }
-}
-
-const saveItemsToLocalStorage = () => {
-  localStorage.setItem('timer', JSON.stringify(pomodoroCount.count))
 }
 
 // Settings //
