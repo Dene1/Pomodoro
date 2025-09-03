@@ -11,7 +11,6 @@ const body = document.body
 
 const min = document.getElementById('minutes')
 const sec = document.getElementById('seconds')
-const counter = document.getElementById('counter')
 const pomodoro = document.getElementById('pomodoro-session')
 const short = document.getElementById('short-break')
 const long = document.getElementById('long-break')
@@ -61,7 +60,6 @@ resetButton.addEventListener('click', () => {
   body.classList.remove('darkmode')
   resetTimer()
   playSound()
-  // return resetButton.removeEventListener('click', () => resetTimer())
 })
 
 startButton.addEventListener('click', () => {
@@ -99,9 +97,29 @@ long.addEventListener('click', () => {
 
 // Counter
 
-counter.innerHTML = `#${pomodoroCount}`
+const counter = document.getElementById('counter')
 
-counter.addEventListener('click', () => {})
+const counterReset = document.getElementById('counter-yes')
+const counterClose = document.getElementById('counter-no')
+
+const resetCounterContainer = document.querySelector('.main__overlay')
+counter.addEventListener('click', () => {
+  resetCounterContainer.classList.remove('visually-hidden')
+  return modal.classList.add('visually-hidden')
+})
+
+counterReset.addEventListener('click', function () {
+  console.log(localStorage.getItem('timer'))
+  localStorage.setItem('timer', '1')
+  counter.innerHTML = `#${(pomodoroCount = 1)}`
+  resetCounterContainer.classList.add('visually-hidden')
+})
+
+counterClose.addEventListener('click', function () {
+  return resetCounterContainer.classList.add('visually-hidden')
+})
+
+counter.innerHTML = `#${pomodoroCount}`
 
 function pomodoroRender(a) {
   a
@@ -228,12 +246,12 @@ function switchMode() {
 
 // Settings //
 
-const buttonSettings = document.querySelector('.threedot')
+const buttonSetting = document.querySelector('.threedot')
 const modal = document.querySelector('.settings')
 const close = document.querySelector('.settings__header__close')
 const soundSlider = document.querySelector('.switch input[type="checkbox"]')
 
-buttonSettings.addEventListener('click', function () {
+buttonSetting.addEventListener('click', function () {
   modal.classList.add('visually-hidden')
   return modal.classList.remove('visually-hidden')
 })
