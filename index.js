@@ -11,9 +11,7 @@ const body = document.body
 
 const min = document.getElementById('minutes')
 const sec = document.getElementById('seconds')
-const pomodoro = document.getElementById('pomodoro-session')
-const short = document.getElementById('short-break')
-const long = document.getElementById('long-break')
+
 const chip = document.querySelector('.main__title')
 
 const pomodoroTime = TIME.WORK_TIME
@@ -23,6 +21,8 @@ const longBreak = TIME.LONG_BREAK
 let currentTime = null
 let defaultTimer = pomodoroTime
 let timeLeft = defaultTimer
+
+console.log(defaultTimer, timeLeft)
 
 const status = {
   state: 'pomodoro',
@@ -66,6 +66,7 @@ startButton.addEventListener('click', () => {
   body.classList.toggle('darkmode')
   startTimer()
   playSound()
+  console.log(status.state)
 })
 
 nextButton.addEventListener('click', () => {
@@ -74,31 +75,70 @@ nextButton.addEventListener('click', () => {
   playSound()
 })
 
+// Timer buttons
+
+const pomodoro = document.getElementById('pomodoro-session')
+const short = document.getElementById('short-break')
+const long = document.getElementById('long-break')
+
 pomodoro.addEventListener('click', () => {
-  chip.innerHTML = pomodoroTitle
-  currentTime = pomodoroTime
-  updateDisplay(currentTime)
   playSound()
+
+  if (status.isRunning === true) {
+    body.classList.toggle('darkmode')
+    if (status.state !== 'pomodoro') {
+      status.state = 'pomodoro'
+      chip.innerHTML = pomodoroTitle
+      resetTimer()
+      updateDisplay(pomodoroTime)
+    }
+  }
+
+  status.state = 'pomodoro'
+  chip.innerHTML = pomodoroTitle
+  resetTimer()
+  updateDisplay(pomodoroTime)
 })
 
 short.addEventListener('click', () => {
-  chip.innerHTML = shortTitle
-  currentTime = shortBreak
-  updateDisplay(currentTime)
   playSound()
+
+  if (status.isRunning === true) {
+    body.classList.toggle('darkmode')
+    if (status.state !== 'short') {
+      status.state = 'short'
+      chip.innerHTML = shortTitle
+      updateDisplay(shortBreak)
+      resetTimer()
+    }
+  }
+  status.state = 'short'
+  chip.innerHTML = shortTitle
+  updateDisplay(shortBreak)
+  resetTimer()
 })
 
 long.addEventListener('click', () => {
-  chip.innerHTML = longTitle
-  currentTime = longBreak
-  updateDisplay(currentTime)
   playSound()
+
+  if (status.isRunning === true) {
+    body.classList.toggle('darkmode')
+    if (status.state !== 'long') {
+      status.state = 'short'
+      chip.innerHTML = longTitle
+      updateDisplay(longBreak)
+      resetTimer()
+    }
+  }
+  status.state = 'long'
+  chip.innerHTML = longTitle
+  updateDisplay(longBreak)
+  resetTimer()
 })
 
 // Counter
 
 const counter = document.getElementById('counter')
-
 const counterReset = document.getElementById('counter-yes')
 const counterClose = document.getElementById('counter-no')
 
@@ -189,7 +229,6 @@ function resetTimer() {
     startButton.textContent = 'Start'
     status.isRunning = false
     updateDisplay(timeLeft)
-    status.state = 'long'
   } else if (status.state === 'long') {
     timeLeft = longBreak
     clearInterval(defaultTimer)
