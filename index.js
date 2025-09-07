@@ -1,16 +1,19 @@
 import { TIME } from './constants'
-import { pomodoroTitle, shortTitle, longTitle, playSound } from './function'
+import {
+  playSound,
+  updateDisplay,
+  updateLogo,
+  getCounterFromLocalStorage,
+  getSoundStatus
+} from './function'
+import { pomodoroTitle, shortTitle, longTitle } from './status-ui'
 
 const resetButton = document.querySelector('.main__controls__reset')
 const nextButton = document.querySelector('.main__controls__next')
 const logo = document.querySelector('.logo')
-const textLogo = document.querySelectorAll('.header__logo__img')
 const startButton = document.querySelector('.main__controls__start')
 
 const body = document.body
-
-const min = document.getElementById('minutes')
-const sec = document.getElementById('seconds')
 
 const chip = document.querySelector('.main__title')
 
@@ -18,7 +21,6 @@ const pomodoroTime = TIME.WORK_TIME
 const shortBreak = TIME.SHORT_BREAK
 const longBreak = TIME.LONG_BREAK
 
-let currentTime = null
 let defaultTimer = pomodoroTime
 let timeLeft = defaultTimer
 
@@ -29,30 +31,15 @@ const status = {
   isRunning: false
 }
 
+logo.addEventListener('click', () => window.location.reload())
+
 //localhost
 
-const getItemsFromLocalStorage = () => {
-  const rawData = localStorage.getItem('timer')
-  if (!rawData) {
-    return []
-  }
-
-  try {
-    const parsedData = JSON.parse(rawData)
-    return parsedData ? parsedData : []
-  } catch {
-    console.error('Could not parse items from LocalStorage')
-    return []
-  }
-}
-
 let pomodoroCount =
-  getItemsFromLocalStorage() == null ? 1 : getItemsFromLocalStorage()
+  getCounterFromLocalStorage() == null ? 1 : getCounterFromLocalStorage()
 
 const saveItemsToLocalStorage = () =>
   localStorage.setItem('timer', JSON.stringify(pomodoroCount))
-
-logo.addEventListener('click', () => window.location.reload())
 
 // Buttons //
 
@@ -144,11 +131,13 @@ const counterClose = document.getElementById('counter-no')
 
 const resetCounterContainer = document.querySelector('.main__overlay')
 counter.addEventListener('click', () => {
+  playSound()
   resetCounterContainer.classList.remove('visually-hidden')
   return modal.classList.add('visually-hidden')
 })
 
 counterReset.addEventListener('click', function () {
+  playSound()
   console.log(localStorage.getItem('timer'))
   localStorage.setItem('timer', '1')
   counter.innerHTML = `#${(pomodoroCount = 1)}`
@@ -156,6 +145,7 @@ counterReset.addEventListener('click', function () {
 })
 
 counterClose.addEventListener('click', function () {
+  playSound()
   return resetCounterContainer.classList.add('visually-hidden')
 })
 
@@ -170,47 +160,37 @@ function pomodoroRender(a) {
 
 // Timer //
 
-function updateLogos() {
-  const isDarkMode = document.body.classList.contains('darkmode')
-  textLogo.forEach(
-    (logo) =>
-      (logo.src = isDarkMode ? logo.dataset.darkSrc : logo.dataset.lightSrc)
-  )
-}
-
-function updateDisplay(timeLeft) {
-  const minutes = Math.floor(timeLeft / 60)
-  const seconds = timeLeft % 60
-  min.textContent = String(minutes).padStart(2, '0')
-  sec.textContent = String(seconds).padStart(2, '0')
-}
-
 function startTimer() {
   if (!status.isRunning) {
     status.isRunning = true
     startButton.textContent = 'Pause'
-    updateLogos()
+    updateLogo()
     defaultTimer = setInterval(() => {
       timeLeft--
       updateDisplay(timeLeft)
       console.log(timeLeft)
       console.log(defaultTimer)
 
-      if (timeLeft <= 0) {
+      if (timeLeft === 0) {
         clearInterval(defaultTimer)
-        playSound(TIME.BREAK)
+        status.state === 'pomodoro' && playSound('break')
         switchMode()
+        body.classList.toggle('darkmode')
+        updateLogo()
       }
     }, 1000)
   } else {
     pauseTimer(defaultTimer)
+    playSound()
+    body.classList.toggle('darkmode')
   }
 }
 
 function pauseTimer(defaultTimer) {
   status.isRunning = false
   clearInterval(defaultTimer)
-  updateLogos()
+  updateLogo()
+  body.classList.toggle('darkmode')
   startButton.textContent = 'Start'
 }
 
@@ -218,21 +198,21 @@ function resetTimer() {
   if (status.state === 'pomodoro') {
     timeLeft = pomodoroTime
     clearInterval(defaultTimer)
-    updateLogos()
+    updateLogo()
     startButton.textContent = 'Start'
     status.isRunning = false
     updateDisplay(timeLeft)
   } else if (status.state === 'short') {
     timeLeft = shortBreak
     clearInterval(defaultTimer)
-    updateLogos()
+    updateLogo()
     startButton.textContent = 'Start'
     status.isRunning = false
     updateDisplay(timeLeft)
   } else if (status.state === 'long') {
     timeLeft = longBreak
     clearInterval(defaultTimer)
-    updateLogos()
+    updateLogo()
     startButton.textContent = 'Start'
     status.isRunning = false
     updateDisplay(timeLeft)
@@ -243,7 +223,7 @@ function switchMode() {
   if (status.state === 'pomodoro') {
     timeLeft = shortBreak
     clearInterval(defaultTimer)
-    updateLogos()
+    updateLogo()
     startButton.textContent = 'Start'
     status.isRunning = false
     updateDisplay(timeLeft)
@@ -253,7 +233,7 @@ function switchMode() {
     if ((pomodoroCount + 1) % 4 === 0) {
       timeLeft = longBreak
       clearInterval(defaultTimer)
-      updateLogos()
+      updateLogo()
       startButton.textContent = 'Start'
       status.isRunning = false
       updateDisplay(timeLeft)
@@ -262,7 +242,7 @@ function switchMode() {
     } else {
       timeLeft = pomodoroTime
       clearInterval(defaultTimer)
-      updateLogos()
+      updateLogo()
       startButton.textContent = 'Start'
       status.isRunning = false
       updateDisplay(timeLeft)
@@ -273,7 +253,7 @@ function switchMode() {
   } else if (status.state === 'long') {
     timeLeft = pomodoroTime
     clearInterval(defaultTimer)
-    updateLogos()
+    updateLogo()
     startButton.textContent = 'Start'
     status.isRunning = false
     updateDisplay(timeLeft)
@@ -288,17 +268,29 @@ function switchMode() {
 const buttonSetting = document.querySelector('.threedot')
 const modal = document.querySelector('.settings')
 const close = document.querySelector('.settings__header__close')
-const soundSlider = document.querySelector('.switch input[type="checkbox"]')
+
+let soundStatus = getSoundStatus() === true
+const soundSlider = document.getElementById('sound')
+
+const saveStatusSound = (status) =>
+  localStorage.setItem('sound', JSON.stringify(status))
+
+saveStatusSound(soundStatus)
+soundSlider.checked = soundStatus
 
 buttonSetting.addEventListener('click', function () {
   modal.classList.add('visually-hidden')
+  playSound()
   return modal.classList.remove('visually-hidden')
 })
 
 close.addEventListener('click', function () {
+  playSound()
   return modal.classList.add('visually-hidden')
 })
 
-// soundSlider.addEventListener('change', () => {
-//   playSound('break') // Останавливаем текущий звук
-// })
+console.log(getSoundStatus(), soundStatus, typeof soundStatus)
+
+soundSlider.addEventListener('change', function () {
+  saveStatusSound(this.checked)
+})
