@@ -639,6 +639,7 @@ input:checked + .slider:before {
 .main__counter {
   font-size: var(--font-size-base);
   margin-top: 6%;
+  cursor: pointer;
 }
 .main__counter__container {
   position: absolute;

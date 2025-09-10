@@ -55,28 +55,34 @@
             name="work"
             id="work"
             value="25"
+            min="1"
+            max="99"
           />
         </form>
 
         <form class="settings__content item">
-          <label for="short break">Short break length</label>
+          <label for="short">Short break length</label>
           <input
             class="settings-input"
             type="number"
-            name="short break"
-            id="short break"
+            name="short"
+            id="short"
             value="5"
+            min="1"
+            max="99"
           />
         </form>
 
         <form class="settings__content item">
-          <label for="long break">Long break length</label>
+          <label for="long">Long break length</label>
           <input
             class="settings-input"
             type="number"
-            name="long break"
-            id="long break"
-            value="5"
+            name="long"
+            id="long"
+            value="15"
+            min="1"
+            max="99"
           />
         </form>
 
@@ -131,8 +137,8 @@
 
       <div class="main__container">
         <div class="main__timer" id="timer">
-          <span class="main__timer__time" id="minutes">25</span>
-          <span class="main__timer__time" id="seconds">00</span>
+          <span class="main__timer__time" id="minutes"></span>
+          <span class="main__timer__time" id="seconds"></span>
         </div>
 
         <div class="main__controls">

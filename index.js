@@ -1,10 +1,12 @@
 import { TIME } from './constants'
 import {
   playSound,
-  updateDisplay,
+  convertTimeForDisplay,
   updateLogo,
   getCounterFromLocalStorage,
-  getSoundStatus
+  getSoundStatus,
+  getTimers,
+  saveTimersToLocalStorage
 } from './function'
 import { pomodoroTitle, shortTitle, longTitle } from './status-ui'
 
@@ -14,17 +16,19 @@ const logo = document.querySelector('.logo')
 const startButton = document.querySelector('.main__controls__start')
 
 const body = document.body
-
 const chip = document.querySelector('.main__title')
 
-const pomodoroTime = TIME.WORK_TIME
-const shortBreak = TIME.SHORT_BREAK
-const longBreak = TIME.LONG_BREAK
+const timer = getTimers()
 
-let defaultTimer = pomodoroTime
-let timeLeft = defaultTimer
+let pomodoroTime = Number(timer.pomodoro) * 60
+let shortBreak = Number(timer.short) * 60
+let longBreak = Number(timer.long) * 60
 
-console.log(defaultTimer, timeLeft)
+console.log(getTimers())
+console.log(pomodoroTime, shortBreak, shortBreak, longBreak)
+
+let timeLeft = pomodoroTime
+convertTimeForDisplay(timeLeft)
 
 const status = {
   state: 'pomodoro',
@@ -33,13 +37,15 @@ const status = {
 
 logo.addEventListener('click', () => window.location.reload())
 
+// display
+
 //localhost
 
 let pomodoroCount =
-  getCounterFromLocalStorage() == null ? 1 : getCounterFromLocalStorage()
+  getCounterFromLocalStorage() === undefined ? 1 : getCounterFromLocalStorage()
 
 const saveItemsToLocalStorage = () =>
-  localStorage.setItem('timer', JSON.stringify(pomodoroCount))
+  localStorage.setItem('counter', JSON.stringify(pomodoroCount))
 
 // Buttons //
 
@@ -62,7 +68,7 @@ nextButton.addEventListener('click', () => {
   playSound()
 })
 
-// Timer buttons
+// timer
 
 const pomodoro = document.getElementById('pomodoro-session')
 const short = document.getElementById('short-break')
@@ -77,14 +83,18 @@ pomodoro.addEventListener('click', () => {
       status.state = 'pomodoro'
       chip.innerHTML = pomodoroTitle
       resetTimer()
-      updateDisplay(pomodoroTime)
     }
   }
 
+  //clearInterval(timer)
+  //     updateLogo()
+  //     startButton.textContent = 'Start'
+  //     status.isRunning = false
+  //     convertTimeForDisplay(pomodoroTime)
+
   status.state = 'pomodoro'
   chip.innerHTML = pomodoroTitle
-  resetTimer()
-  updateDisplay(pomodoroTime)
+  convertTimeForDisplay(pomodoroTime)
 })
 
 short.addEventListener('click', () => {
@@ -95,14 +105,13 @@ short.addEventListener('click', () => {
     if (status.state !== 'short') {
       status.state = 'short'
       chip.innerHTML = shortTitle
-      updateDisplay(shortBreak)
       resetTimer()
     }
   }
+
   status.state = 'short'
   chip.innerHTML = shortTitle
-  updateDisplay(shortBreak)
-  resetTimer()
+  convertTimeForDisplay(shortBreak)
 })
 
 long.addEventListener('click', () => {
@@ -113,14 +122,12 @@ long.addEventListener('click', () => {
     if (status.state !== 'long') {
       status.state = 'short'
       chip.innerHTML = longTitle
-      updateDisplay(longBreak)
       resetTimer()
     }
   }
   status.state = 'long'
   chip.innerHTML = longTitle
-  updateDisplay(longBreak)
-  resetTimer()
+  convertTimeForDisplay(longBreak)
 })
 
 // Counter
@@ -130,6 +137,7 @@ const counterReset = document.getElementById('counter-yes')
 const counterClose = document.getElementById('counter-no')
 
 const resetCounterContainer = document.querySelector('.main__overlay')
+
 counter.addEventListener('click', () => {
   playSound()
   resetCounterContainer.classList.remove('visually-hidden')
@@ -138,10 +146,22 @@ counter.addEventListener('click', () => {
 
 counterReset.addEventListener('click', function () {
   playSound()
-  console.log(localStorage.getItem('timer'))
-  localStorage.setItem('timer', '1')
+  localStorage.setItem('counter', '1')
   counter.innerHTML = `#${(pomodoroCount = 1)}`
   resetCounterContainer.classList.add('visually-hidden')
+
+  if (status.isRunning === true) {
+    body.classList.toggle('darkmode')
+    if (status.state !== 'pomodoro') {
+      status.state = 'pomodoro'
+      chip.innerHTML = pomodoroTitle
+      resetTimer()
+    }
+  }
+
+  status.state = 'pomodoro'
+  chip.innerHTML = pomodoroTitle
+  convertTimeForDisplay(pomodoroTime)
 })
 
 counterClose.addEventListener('click', function () {
@@ -158,21 +178,22 @@ function pomodoroRender(a) {
   saveItemsToLocalStorage()
 }
 
-// Timer //
+// Timer
+let time
 
 function startTimer() {
   if (!status.isRunning) {
     status.isRunning = true
     startButton.textContent = 'Pause'
     updateLogo()
-    defaultTimer = setInterval(() => {
+    time = setInterval(() => {
       timeLeft--
-      updateDisplay(timeLeft)
+      convertTimeForDisplay(timeLeft)
       console.log(timeLeft)
-      console.log(defaultTimer)
+      console.log(timer)
 
       if (timeLeft === 0) {
-        clearInterval(defaultTimer)
+        clearInterval(time)
         status.state === 'pomodoro' && playSound('break')
         switchMode()
         body.classList.toggle('darkmode')
@@ -180,15 +201,15 @@ function startTimer() {
       }
     }, 1000)
   } else {
-    pauseTimer(defaultTimer)
+    pauseTimer(time)
     playSound()
     body.classList.toggle('darkmode')
   }
 }
 
-function pauseTimer(defaultTimer) {
+function pauseTimer(timer) {
   status.isRunning = false
-  clearInterval(defaultTimer)
+  clearInterval(timer)
   updateLogo()
   body.classList.toggle('darkmode')
   startButton.textContent = 'Start'
@@ -197,66 +218,63 @@ function pauseTimer(defaultTimer) {
 function resetTimer() {
   if (status.state === 'pomodoro') {
     timeLeft = pomodoroTime
-    clearInterval(defaultTimer)
+    clearInterval(time)
     updateLogo()
     startButton.textContent = 'Start'
     status.isRunning = false
-    updateDisplay(timeLeft)
+    convertTimeForDisplay(pomodoroTime)
   } else if (status.state === 'short') {
-    timeLeft = shortBreak
-    clearInterval(defaultTimer)
+    clearInterval(time)
     updateLogo()
     startButton.textContent = 'Start'
     status.isRunning = false
-    updateDisplay(timeLeft)
+    convertTimeForDisplay(shortBreak)
   } else if (status.state === 'long') {
-    timeLeft = longBreak
-    clearInterval(defaultTimer)
+    clearInterval(time)
     updateLogo()
     startButton.textContent = 'Start'
     status.isRunning = false
-    updateDisplay(timeLeft)
+    convertTimeForDisplay(longBreak)
   }
 }
 
 function switchMode() {
   if (status.state === 'pomodoro') {
     timeLeft = shortBreak
-    clearInterval(defaultTimer)
+    clearInterval(time)
     updateLogo()
     startButton.textContent = 'Start'
     status.isRunning = false
-    updateDisplay(timeLeft)
+    convertTimeForDisplay(timeLeft)
     chip.innerHTML = shortTitle
     status.state = 'short'
-  } else if (status.state === 'short') {
-    if ((pomodoroCount + 1) % 4 === 0) {
+    if (pomodoroCount % 4 === 0) {
       timeLeft = longBreak
-      clearInterval(defaultTimer)
+      clearInterval(time)
       updateLogo()
       startButton.textContent = 'Start'
       status.isRunning = false
-      updateDisplay(timeLeft)
+      convertTimeForDisplay(timeLeft)
       chip.innerHTML = longTitle
       status.state = 'long'
-    } else {
-      timeLeft = pomodoroTime
-      clearInterval(defaultTimer)
-      updateLogo()
-      startButton.textContent = 'Start'
-      status.isRunning = false
-      updateDisplay(timeLeft)
-      pomodoroRender(1)
-      chip.innerHTML = pomodoroTitle
-      status.state = 'pomodoro'
     }
-  } else if (status.state === 'long') {
+  } else if (status.state === 'short') {
     timeLeft = pomodoroTime
-    clearInterval(defaultTimer)
+    clearInterval(time)
     updateLogo()
     startButton.textContent = 'Start'
     status.isRunning = false
-    updateDisplay(timeLeft)
+    convertTimeForDisplay(timeLeft)
+    pomodoroRender(1)
+    chip.innerHTML = pomodoroTitle
+    status.state = 'pomodoro'
+  } else if (status.state === 'long') {
+    timeLeft = pomodoroTime
+    clearInterval(time)
+    updateLogo()
+    startButton.textContent = 'Start'
+    status.isRunning = false
+    convertTimeForDisplay(timeLeft)
     chip.innerHTML = pomodoroTitle
     status.state = 'pomodoro'
     pomodoroRender(1)
@@ -289,8 +307,40 @@ close.addEventListener('click', function () {
   return modal.classList.add('visually-hidden')
 })
 
-console.log(getSoundStatus(), soundStatus, typeof soundStatus)
-
 soundSlider.addEventListener('change', function () {
   saveStatusSound(this.checked)
+})
+
+const focusTime = document.getElementById('work')
+const shortBreakTime = document.getElementById('short')
+const longBreakTime = document.getElementById('long')
+
+focusTime.addEventListener('input', function () {
+  console.log('Новое значение pomo:', this.value)
+  // Тут можно обновлять ваш таймер или другие элементы
+  playSound()
+
+  pomodoroTime = Number(this.value) * 60
+  convertTimeForDisplay(pomodoroTime)
+  saveTimersToLocalStorage('pomodoro', this.value)
+})
+
+shortBreakTime.addEventListener('input', function () {
+  console.log('Новое значение short:', this.value)
+  // Тут можно обновлять ваш таймер или другие элементы
+  playSound()
+
+  shortBreak = Number(this.value) * 60
+  convertTimeForDisplay(shortBreak)
+  saveTimersToLocalStorage('short', this.value)
+})
+
+longBreakTime.addEventListener('input', function () {
+  console.log('Новое значение long:', this.value)
+  playSound()
+
+  // Тут можно обновлять ваш таймер или другие элементы
+  longBreak = Number(this.value) * 60
+  convertTimeForDisplay(longBreak)
+  saveTimersToLocalStorage('long', this.value)
 })
