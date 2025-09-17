@@ -493,6 +493,15 @@ a {
   text-align: center;
   width: 30%;
 }
+.settings .settings-color {
+  background-color: var(--color-white);
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius-medium);
+  color: var(--color-text);
+  padding: 4px 10px;
+  width: 10%;
+  height: 10%;
+}
 
 .overlay {
   position: absolute;

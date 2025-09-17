@@ -86,10 +86,23 @@
           />
         </form>
 
+        <form class="settings__content color">
+          <label for="color">Color theme</label>
+          <div class="settings-color" id="color"></div>
+        </form>
+
         <div class="settings__content sound">
           <span class="settings__content__sound__title">Sound</span>
           <label class="switch" for="sound">
             <input type="checkbox" name="sound" id="sound" checked />
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div class="settings__content darkmode">
+          <span class="settings__content__darkmode__title">Dark Mode</span>
+          <label class="switch" for="darkmode">
+            <input type="checkbox" name="darkmode" id="darkmode" />
             <span class="slider round"></span>
           </label>
         </div>

@@ -6,7 +6,8 @@ import {
   getCounterFromLocalStorage,
   getSoundStatus,
   getTimers,
-  saveTimersToLocalStorage
+  saveTimersToLocalStorage,
+  getTheme
 } from './function'
 import { pomodoroTitle, shortTitle, longTitle } from './status-ui'
 
@@ -32,6 +33,8 @@ convertTimeForDisplay(timeLeft)
 
 const status = {
   state: 'pomodoro',
+  theme: 'light',
+  sound: true,
   isRunning: false
 }
 
@@ -44,26 +47,26 @@ logo.addEventListener('click', () => window.location.reload())
 let pomodoroCount =
   getCounterFromLocalStorage() === undefined ? 1 : getCounterFromLocalStorage()
 
-const saveItemsToLocalStorage = () =>
-  localStorage.setItem('counter', JSON.stringify(pomodoroCount))
+const saveItemsToLocalStorage = (status) =>
+  localStorage.setItem('counter', JSON.stringify(status))
+
+saveItemsToLocalStorage(pomodoroCount)
 
 // Buttons //
 
 resetButton.addEventListener('click', () => {
-  body.classList.remove('darkmode')
   resetTimer()
   playSound()
 })
 
 startButton.addEventListener('click', () => {
-  body.classList.toggle('darkmode')
   startTimer()
   playSound()
   console.log(status.state)
 })
 
 nextButton.addEventListener('click', () => {
-  status.isRunning === true && body.classList.toggle('darkmode')
+  // status.isRunning === true && body.classList.toggle('darkmode')
   switchMode()
   playSound()
 })
@@ -78,19 +81,12 @@ pomodoro.addEventListener('click', () => {
   playSound()
 
   if (status.isRunning === true) {
-    body.classList.toggle('darkmode')
     if (status.state !== 'pomodoro') {
       status.state = 'pomodoro'
       chip.innerHTML = pomodoroTitle
       resetTimer()
     }
   }
-
-  //clearInterval(timer)
-  //     updateLogo()
-  //     startButton.textContent = 'Start'
-  //     status.isRunning = false
-  //     convertTimeForDisplay(pomodoroTime)
 
   status.state = 'pomodoro'
   chip.innerHTML = pomodoroTitle
@@ -101,7 +97,6 @@ short.addEventListener('click', () => {
   playSound()
 
   if (status.isRunning === true) {
-    body.classList.toggle('darkmode')
     if (status.state !== 'short') {
       status.state = 'short'
       chip.innerHTML = shortTitle
@@ -118,7 +113,6 @@ long.addEventListener('click', () => {
   playSound()
 
   if (status.isRunning === true) {
-    body.classList.toggle('darkmode')
     if (status.state !== 'long') {
       status.state = 'short'
       chip.innerHTML = longTitle
@@ -146,12 +140,9 @@ counter.addEventListener('click', () => {
 
 counterReset.addEventListener('click', function () {
   playSound()
-  localStorage.setItem('counter', '1')
-  counter.innerHTML = `#${(pomodoroCount = 1)}`
-  resetCounterContainer.classList.add('visually-hidden')
 
   if (status.isRunning === true) {
-    body.classList.toggle('darkmode')
+    status.isRunning = false
     if (status.state !== 'pomodoro') {
       status.state = 'pomodoro'
       chip.innerHTML = pomodoroTitle
@@ -159,9 +150,12 @@ counterReset.addEventListener('click', function () {
     }
   }
 
+  localStorage.setItem('counter', '1')
+  counter.innerHTML = `#${(pomodoroCount = 1)}`
+  resetCounterContainer.classList.add('visually-hidden')
   status.state = 'pomodoro'
   chip.innerHTML = pomodoroTitle
-  convertTimeForDisplay(pomodoroTime)
+  resetTimer()
 })
 
 counterClose.addEventListener('click', function () {
@@ -175,7 +169,7 @@ function pomodoroRender(a) {
   a
     ? (counter.innerHTML = `#${++pomodoroCount}`)
     : (counter.innerHTML = `#${pomodoroCount}`)
-  saveItemsToLocalStorage()
+  saveItemsToLocalStorage(pomodoroCount)
 }
 
 // Timer
@@ -196,14 +190,12 @@ function startTimer() {
         clearInterval(time)
         status.state === 'pomodoro' && playSound('break')
         switchMode()
-        body.classList.toggle('darkmode')
         updateLogo()
       }
     }, 1000)
   } else {
     pauseTimer(time)
     playSound()
-    body.classList.toggle('darkmode')
   }
 }
 
@@ -211,17 +203,16 @@ function pauseTimer(timer) {
   status.isRunning = false
   clearInterval(timer)
   updateLogo()
-  body.classList.toggle('darkmode')
   startButton.textContent = 'Start'
 }
 
 function resetTimer() {
   if (status.state === 'pomodoro') {
     timeLeft = pomodoroTime
+    status.isRunning = false
     clearInterval(time)
     updateLogo()
     startButton.textContent = 'Start'
-    status.isRunning = false
     convertTimeForDisplay(pomodoroTime)
   } else if (status.state === 'short') {
     clearInterval(time)
@@ -287,14 +278,13 @@ const buttonSetting = document.querySelector('.threedot')
 const modal = document.querySelector('.settings')
 const close = document.querySelector('.settings__header__close')
 
-let soundStatus = getSoundStatus() === true
+let soundStatus = getSoundStatus() === undefined ? true : getSoundStatus()
 const soundSlider = document.getElementById('sound')
 
 const saveStatusSound = (status) =>
   localStorage.setItem('sound', JSON.stringify(status))
 
 saveStatusSound(soundStatus)
-soundSlider.checked = soundStatus
 
 buttonSetting.addEventListener('click', function () {
   modal.classList.add('visually-hidden')
@@ -306,9 +296,10 @@ close.addEventListener('click', function () {
   playSound()
   return modal.classList.add('visually-hidden')
 })
-
 soundSlider.addEventListener('change', function () {
   saveStatusSound(this.checked)
+  soundStatus = this.checked
+  status.state = this.checked
 })
 
 const focusTime = document.getElementById('work')
@@ -316,31 +307,54 @@ const shortBreakTime = document.getElementById('short')
 const longBreakTime = document.getElementById('long')
 
 focusTime.addEventListener('input', function () {
-  console.log('Новое значение pomo:', this.value)
-  // Тут можно обновлять ваш таймер или другие элементы
   playSound()
 
   pomodoroTime = Number(this.value) * 60
-  convertTimeForDisplay(pomodoroTime)
   saveTimersToLocalStorage('pomodoro', this.value)
+  status.state === 'pomodoro' && convertTimeForDisplay(pomodoroTime)
 })
 
 shortBreakTime.addEventListener('input', function () {
-  console.log('Новое значение short:', this.value)
-  // Тут можно обновлять ваш таймер или другие элементы
   playSound()
 
   shortBreak = Number(this.value) * 60
-  convertTimeForDisplay(shortBreak)
   saveTimersToLocalStorage('short', this.value)
+  status.state === 'short' && convertTimeForDisplay(shortBreak)
 })
 
 longBreakTime.addEventListener('input', function () {
-  console.log('Новое значение long:', this.value)
   playSound()
 
-  // Тут можно обновлять ваш таймер или другие элементы
   longBreak = Number(this.value) * 60
-  convertTimeForDisplay(longBreak)
   saveTimersToLocalStorage('long', this.value)
+  status.state === 'long' && convertTimeForDisplay(longBreak)
 })
+
+// darkmode
+
+let statusTheme = getTheme() === 'light' ? 'light' : getTheme()
+const themeSlider = document.getElementById('darkmode')
+
+const saveStatusTheme = (status) =>
+  localStorage.setItem('theme', JSON.stringify(status))
+
+saveStatusTheme(statusTheme)
+
+themeSlider.addEventListener('change', function () {
+  if (this.checked) {
+    let dark = 'dark'
+    saveStatusTheme(dark)
+    statusTheme = dark
+    status.theme = dark
+    body.classList.add('darkmode')
+    updateLogo()
+  } else {
+    let light = 'light'
+    saveStatusTheme('light')
+    statusTheme = light
+    status.theme = light
+    body.classList.remove('darkmode')
+    updateLogo()
+  }
+})
+console.log(soundStatus, statusTheme)
