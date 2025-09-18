@@ -6,6 +6,7 @@ import { getSoundStatus } from './localhost/get-sound.js'
 import { getTimers } from './localhost/get-timers.js'
 import { saveTimersToLocalStorage } from './localhost/save-timer.js'
 import { getTheme } from './localhost/get-theme.js'
+import { updateButtonIcon } from './update-button-icon.js'
 
 export {
   playSound,
@@ -15,5 +16,6 @@ export {
   getSoundStatus,
   getTimers,
   saveTimersToLocalStorage,
-  getTheme
+  getTheme,
+  updateButtonIcon
 }
