@@ -20,7 +20,6 @@ const body = document.body
 const statusUI = document.querySelector('.main__title')
 
 const timer = getTimers()
-
 let pomodoroTime = Number(timer.pomodoro) * 60
 let shortBreak = Number(timer.short) * 60
 let longBreak = Number(timer.long) * 60
@@ -41,7 +40,29 @@ const status = {
 
 logo.addEventListener('click', () => window.location.reload())
 
-// display
+// color theme
+const colorPicker = document.getElementById('colorPicker')
+
+colorPicker.addEventListener('change', function () {
+  const selectedTheme = this.value
+
+  // // Сохраняем тему
+  localStorage.setItem('theme', selectedTheme)
+
+  // // Применяем тему к документу
+  document.documentElement.setAttribute('data-theme', selectedTheme)
+
+  // Обновляем логотип
+  updateLogo()
+})
+
+// Инициализация
+document.addEventListener('DOMContentLoaded', function () {
+  const savedTheme = localStorage.getItem('theme') || 'red'
+  colorPicker.value = savedTheme
+  document.documentElement.setAttribute('data-theme', savedTheme)
+  updateLogo()
+})
 
 //localhost
 

@@ -1,3 +1,4 @@
-import { TIME } from "./timer.js"
+import { TIME } from './timer.js'
+import { THEMES } from './themes.js'
 
-export { TIME }
+export { TIME, THEMES }

@@ -332,18 +332,58 @@ body {
   --shadow: var(--color-red-alpha-20);
   --border-color: var(--color-black-alpha-10);
   --modal-color: var(--color-black-alpha-90);
+  --button-bg-secondary: var(--color-red-alpha-10);
+  --button-bg-main: var(--color-red-alpha-70);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.darkmode {
+[data-theme=blue] {
+  --background-color: var(--color-blue-5);
+  --color-text: var(--color-blue-90);
+  --svg-color: var(--color-blue-90);
+  --shadow: var(--color-blue-alpha-20);
+  --button-bg-secondary: var(--color-blue-alpha-10);
+  --button-bg-main: var(--color-blue-alpha-70);
+}
+
+[data-theme=green] {
+  --background-color: var(--color-green-5);
+  --color-text: var(--color-green-90);
+  --svg-color: var(--color-green-90);
+  --shadow: var(--color-green-alpha-20);
+  --button-bg-secondary: var(--color-green-alpha-10);
+  --button-bg-main: var(--color-green-alpha-70);
+}
+
+[data-theme=red].darkmode {
   --background-color: var(--color-red-95);
   --color-text: var(--color-red-10);
   --svg-color: var(--color-red-10);
   --shadow: var(--color-red-90);
   --border-color: var(--color-white-alpha-10);
   --modal-color: var(--color-white-alpha-50);
+  --button-bg-secondary: var(--color-green-alpha-10);
+  --button-bg-main: var(--color-green-alpha-70);
+}
+
+[data-theme=blue].darkmode {
+  --background-color: var(--color-blue-95);
+  --color-text: var(--color-blue-10);
+  --svg-color: var(--color-blue-10);
+  --shadow: var(--color-blue-90);
+  --button-bg-secondary: var(--color-green-alpha-10);
+  --button-bg-main: var(--color-green-alpha-70);
+}
+
+[data-theme=green].darkmode {
+  --background-color: var(--color-green-95);
+  --color-text: var(--color-green-10);
+  --svg-color: var(--color-green-10);
+  --shadow: var(--color-green-90);
+  --button-bg-secondary: var(--color-green-alpha-10);
+  --button-bg-main: var(--color-green-alpha-70);
 }
 
 a,
@@ -484,6 +524,15 @@ a {
   margin-top: 20px;
   align-items: center;
 }
+.settings__content__color {
+  width: 23%;
+  height: 32px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .settings .settings-input {
   border: 2px solid var(--border-color);
   border-radius: var(--border-radius-medium);
@@ -491,7 +540,6 @@ a {
   color: var(--color-text);
   padding: 4px 10px;
   text-align: center;
-  width: 30%;
 }
 .settings .settings-color {
   background-color: var(--color-white);
@@ -548,7 +596,7 @@ a {
 }
 
 input:checked + .slider {
-  background-color: var(--color-red-90);
+  background-color: var(--color-text);
 }
 
 input:checked + .slider:before {
@@ -688,7 +736,7 @@ input:checked + .slider:before {
   font-size: var(--font-size-medium);
 }
 .main__mode__button {
-  background-color: var(--color-red-alpha-10);
+  background-color: var(--button-bg-secondary);
   border-radius: var(--border-radius-medium);
   padding: 10px 20px;
 }
@@ -717,14 +765,14 @@ input:checked + .slider:before {
 }
 
 .button__main {
-  background-color: var(--color-red-alpha-70);
+  background-color: var(--button-bg-main);
   border-radius: var(--border-radius-xlarge);
   min-width: 8rem;
   min-height: 6rem;
   box-shadow: 0 6px 0 var(--shadow);
 }
 .button__secondary {
-  background-color: var(--color-red-alpha-10);
+  background-color: var(--button-bg-secondary);
   border-radius: var(--border-radius-xlarge);
   min-width: 5rem;
   min-height: 5rem;
@@ -740,6 +788,33 @@ input:checked + .slider:before {
 }
 .footer__text {
   font-size: var(--font-size-small);
+}
+
+.color select {
+  appearance: none;
+  width: 23%;
+  height: 32px;
+  padding: 5px 10px 5px 10px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  background-color: var(--shadow);
+  cursor: pointer;
+}
+.color select:hover {
+  border-color: var(--color-black-alpha-60);
+  cursor: pointer;
+}
+
+.theme-red {
+  background-color: var(--color-red-50);
+}
+
+.theme-blue {
+  background-color: var(--color-blue-50);
+}
+
+.theme-green {
+  background-color: var(--color-green-50);
 }
 
 /*# sourceMappingURL=styles.css.map */

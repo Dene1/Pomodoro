@@ -1,0 +1,27 @@
+.color select {
+  appearance: none;
+  width: 23%;
+  height: 32px;
+  padding: 5px 10px 5px 10px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  background-color: var(--shadow);
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--color-black-alpha-60);
+    cursor: pointer;
+  }
+}
+
+.theme-red {
+  background-color: var(--color-red-50);
+}
+
+.theme-blue {
+  background-color: var(--color-blue-50);
+}
+
+.theme-green {
+  background-color: var(--color-green-50);
+}

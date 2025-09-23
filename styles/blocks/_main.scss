@@ -62,7 +62,7 @@
   }
 
   &__mode__button {
-    background-color: var(--color-red-alpha-10);
+    background-color: var(--button-bg-secondary);
     border-radius: var(--border-radius-medium);
     padding: 10px 20px;
   }
@@ -97,7 +97,7 @@
 
 .button {
   &__main {
-    background-color: var(--color-red-alpha-70);
+    background-color: var(--button-bg-main);
     border-radius: var(--border-radius-xlarge);
     min-width: 8rem;
     min-height: 6rem;
@@ -105,7 +105,7 @@
   }
 
   &__secondary {
-    background-color: var(--color-red-alpha-10);
+    background-color: var(--button-bg-secondary);
     border-radius: var(--border-radius-xlarge);
     min-width: 5rem;
     min-height: 5rem;

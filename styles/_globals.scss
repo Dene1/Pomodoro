@@ -19,16 +19,57 @@ body {
   --shadow: var(--color-red-alpha-20);
   --border-color: var(--color-black-alpha-10);
   --modal-color: var(--color-black-alpha-90);
+  --button-bg-secondary: var(--color-red-alpha-10);
+  --button-bg-main: var(--color-red-alpha-70);
   @include flex-center(false);
 }
 
-.darkmode {
+[data-theme='blue'] {
+  --background-color: var(--color-blue-5);
+  --color-text: var(--color-blue-90);
+  --svg-color: var(--color-blue-90);
+  --shadow: var(--color-blue-alpha-20);
+  --button-bg-secondary: var(--color-blue-alpha-10);
+  --button-bg-main: var(--color-blue-alpha-70);
+}
+
+[data-theme='green'] {
+  --background-color: var(--color-green-5);
+  --color-text: var(--color-green-90);
+  --svg-color: var(--color-green-90);
+  --shadow: var(--color-green-alpha-20);
+  --button-bg-secondary: var(--color-green-alpha-10);
+  --button-bg-main: var(--color-green-alpha-70);
+}
+
+
+[data-theme='red'].darkmode {
   --background-color: var(--color-red-95);
   --color-text: var(--color-red-10);
   --svg-color: var(--color-red-10);
   --shadow: var(--color-red-90);
   --border-color: var(--color-white-alpha-10);
   --modal-color: var(--color-white-alpha-50);
+  --button-bg-secondary: var(--color-green-alpha-10);
+  --button-bg-main: var(--color-green-alpha-70);
+}
+
+[data-theme='blue'].darkmode {
+  --background-color: var(--color-blue-95);
+  --color-text: var(--color-blue-10);
+  --svg-color: var(--color-blue-10);
+  --shadow: var(--color-blue-90);
+  --button-bg-secondary: var(--color-green-alpha-10);
+  --button-bg-main: var(--color-green-alpha-70);
+}
+
+[data-theme='green'].darkmode {
+  --background-color: var(--color-green-95);
+  --color-text: var(--color-green-10);
+  --svg-color: var(--color-green-10);
+  --shadow: var(--color-green-90);
+  --button-bg-secondary: var(--color-green-alpha-10);
+  --button-bg-main: var(--color-green-alpha-70);
 }
 
 a,
