@@ -11,26 +11,12 @@
       import { themeChange } from 'https://esm.run/theme-change'
 
       themeChange()
-
-      import { updateLogo } from './function'
-
-      // Вызываем при загрузке страницы
-      document.addEventListener('DOMContentLoaded', () => {
-        updateLogo()
-      })
     </script>
   </head>
   <body>
     <header class="header">
       <div class="header__container">
         <div class="header__logo logo">
-          <!--          <img-->
-          <!--            class="header__logo__img"-->
-          <!--            src="assets/images/logo/light/logo-red.svg"-->
-          <!--            data-light-src="assets/images/logo/light/logo-red.svg"-->
-          <!--            data-dark-src="assets/images/logo/dark/logo-red.svg"-->
-          <!--            alt="logo"-->
-          <!--          />-->
           <img
             class="header__logo__img"
             src="assets/images/logo/light/logo-red.svg"
@@ -124,9 +110,9 @@
         <div class="settings__content color">
           <label for="colorPicker">Color theme</label>-->
           <select data-choose-theme id="colorPicker">
-            <option class="theme-red" value="red"></option>
-            <option class="theme-blue" value="blue"></option>
-            <option class="theme-green" value="green"></option>
+            <option class="theme-red" value="red">🔴</option>
+            <option class="theme-blue" value="blue">🔵</option>
+            <option class="theme-green" value="green">🟢</option>
           </select>
         </div>
 

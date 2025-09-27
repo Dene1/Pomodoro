@@ -1,5 +1,5 @@
 export const getTheme = () => {
-  const rawData = localStorage.getItem('theme')
+  const rawData = localStorage.getItem('mode')
   if (!rawData) {
     return 'light'
   }

@@ -15,8 +15,6 @@ const resetButton = document.querySelector('.main__controls__reset')
 const nextButton = document.querySelector('.main__controls__next')
 const logo = document.querySelector('.logo')
 const startButton = document.querySelector('.main__controls__start')
-
-const body = document.body
 const statusUI = document.querySelector('.main__title')
 
 const timer = getTimers()
@@ -32,10 +30,11 @@ convertTimeForDisplay(timeLeft)
 
 const status = {
   state: 'pomodoro',
-  theme: 'light',
+  mode: getTheme(),
+  color: 'red',
   sound: true,
   isRunning: false,
-  counter: '1'
+  counter: getCounterFromLocalStorage()
 }
 
 logo.addEventListener('click', () => window.location.reload())
@@ -46,10 +45,10 @@ const colorPicker = document.getElementById('colorPicker')
 colorPicker.addEventListener('change', function () {
   const selectedTheme = this.value
 
-  // // Сохраняем тему
+  //Сохраняем тему
   localStorage.setItem('theme', selectedTheme)
 
-  // // Применяем тему к документу
+  //Применяем тему к документу
   document.documentElement.setAttribute('data-theme', selectedTheme)
 
   // Обновляем логотип
@@ -66,8 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //localhost
 
-let pomodoroCount =
-  getCounterFromLocalStorage() === undefined ? 1 : getCounterFromLocalStorage()
+let pomodoroCount = status.counter
 
 const saveItemsToLocalStorage = (status) =>
   localStorage.setItem('counter', JSON.stringify(status))
@@ -85,11 +83,9 @@ startButton.addEventListener('click', () => {
   updateButtonIcon(status.isRunning)
   startTimer()
   playSound()
-  console.log(status.state, status.isRunning)
 })
 
 nextButton.addEventListener('click', () => {
-  // status.isRunning === true && body.classList.toggle('darkmode')
   switchMode()
   playSound()
 })
@@ -356,28 +352,57 @@ longBreakTime.addEventListener('input', function () {
 
 // darkmode
 
-let statusTheme = getTheme() === 'light' ? 'light' : getTheme()
 const themeSlider = document.getElementById('darkmode')
 
 const saveStatusTheme = (status) =>
-  localStorage.setItem('theme', JSON.stringify(status))
+  localStorage.setItem('mode', JSON.stringify(status))
 
-saveStatusTheme(statusTheme)
+saveStatusTheme(status.mode)
 
-themeSlider.addEventListener('change', function () {
-  if (this.checked) {
-    let dark = 'dark'
-    saveStatusTheme(dark)
-    statusTheme = dark
-    status.theme = dark
-    body.classList.add('darkmode')
-    updateLogo()
-  } else {
-    let light = 'light'
-    saveStatusTheme('light')
-    statusTheme = light
-    status.theme = light
-    body.classList.remove('darkmode')
-    updateLogo()
+// Инициализация
+document.addEventListener('DOMContentLoaded', function () {
+  // Восстанавливаем настройки
+  const savedTheme = localStorage.getItem('theme') || 'red'
+  const savedMode = JSON.parse(localStorage.getItem('mode') || '"light"')
+
+  // Применяем настройки theme-change
+  document.documentElement.setAttribute('data-theme', savedTheme)
+
+  // Применяем темный режим
+  if (savedMode === 'dark') {
+    document.documentElement.classList.add('darkmode')
+    themeSlider.checked = true
   }
+
+  status.color = savedTheme
+  status.mode = savedMode
+  updateLogo()
+})
+
+colorPicker.addEventListener('change', function () {
+  const selectedTheme = this.value
+
+  // theme-change автоматически применит тему через data-attributes
+  document.documentElement.setAttribute('data-theme', selectedTheme)
+  localStorage.setItem('theme', selectedTheme)
+
+  // Обновляем статус для логотипа
+  status.color = selectedTheme
+  updateLogo()
+})
+
+// Обработчик темного режима - нужно реализовать отдельно
+themeSlider.addEventListener('change', function () {
+  const isDarkMode = this.checked
+
+  if (isDarkMode) {
+    document.documentElement.classList.add('darkmode')
+    status.mode = 'dark'
+  } else {
+    document.documentElement.classList.remove('darkmode')
+    status.mode = 'light'
+  }
+
+  localStorage.setItem('mode', JSON.stringify(status.mode))
+  updateLogo()
 })

@@ -1,20 +1,8 @@
-// const textLogo = document.querySelectorAll('.header__logo__img')
-//
-// export const updateLogo = function () {
-//   const currentTheme = localStorage.getItem('theme')
-//   console.log(currentTheme)
-//   const isDarkMode = document.body.classList.contains('darkmode')
-//
-//   textLogo.forEach(
-//     (logo) =>
-//       (logo.src = isDarkMode ? logo.dataset.darkSrc : logo.dataset.lightSrc)
-//   )
-// }
-
 const textLogo = document.querySelector('.header__logo__img')
 
 export const updateLogo = function () {
   const currentTheme = localStorage.getItem('theme') || 'red'
+
   const isDarkMode = document.documentElement.classList.contains('darkmode')
 
   console.log(currentTheme)

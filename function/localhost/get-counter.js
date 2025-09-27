@@ -1,7 +1,7 @@
 export const getCounterFromLocalStorage = () => {
   const rawData = localStorage.getItem('counter')
   if (!rawData) {
-    return undefined
+    return '1'
   }
 
   try {
@@ -9,6 +9,6 @@ export const getCounterFromLocalStorage = () => {
     return parsedData ? parsedData : []
   } catch {
     console.error('Could not parse items from LocalStorage')
-    return undefined
+    return '1'
   }
 }
