@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8008ac52-0683-4927-a2f1-203438b4e317" name="Changes" comment="update (app): the application is almost ready">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/_globals.scss" beforeDir="false" afterPath="$PROJECT_DIR$/styles/_globals.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/blocks/_header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/styles/blocks/_header.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/blocks/_main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/styles/blocks/_main.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/blocks/_settings.scss" beforeDir="false" afterPath="$PROJECT_DIR$/styles/blocks/_settings.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/styles.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/styles/styles.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -285,7 +280,7 @@
       <workItem from="1759956333616" duration="2000" />
       <workItem from="1759956346781" duration="15000" />
       <workItem from="1759960586553" duration="17000" />
-      <workItem from="1774811964322" duration="2885000" />
+      <workItem from="1774811964322" duration="4442000" />
     </task>
     <task id="LOCAL-00001" summary="init project">
       <option name="closed" value="true" />
