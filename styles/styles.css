@@ -668,6 +668,12 @@ input:checked + .slider:before {
   flex-direction: column;
   align-items: center;
 }
+.main__mode {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
 .main__overlay {
   display: flex;
   justify-content: center;

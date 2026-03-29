@@ -6,6 +6,11 @@
   flex-direction: column;
   align-items: center;
 
+  &__mode {
+    @include flex-center(true);
+    gap: 10px;
+  }
+
   &__overlay {
     @include flex-center(false);
     position: fixed;
