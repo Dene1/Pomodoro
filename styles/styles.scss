@@ -1,9 +1,8 @@
 @use "normalize";
 @use "variables" as variables;
-@use "mixins";
 @use "globals" as global;
+@use "mixins";
 @use "fonts";
-@use "media";
 @use "utils";
 @use "blocks/header";
 @use "blocks/settings";

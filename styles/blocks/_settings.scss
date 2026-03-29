@@ -2,7 +2,9 @@
 
 .settings {
   z-index: 10;
-  @include flex-center(false);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;

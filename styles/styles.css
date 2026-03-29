@@ -469,18 +469,6 @@ a {
   overflow: hidden !important;
 }
 
-@media (max-width: 480px) {
-  .hidden-mobile {
-    display: none !important;
-  }
-}
-
-@media (min-width: 481px) {
-  .visible-mobile {
-    display: none !important;
-  }
-}
-
 .header {
   padding: 20px 0;
 }
