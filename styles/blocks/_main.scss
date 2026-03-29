@@ -117,3 +117,13 @@
     @include shadow(var(--shadow));
   }
 }
+
+@media (max-width: 500px) {
+  //body {
+  //  padding: 10px
+  //}
+  .main__mode__button {
+    text-align: center;
+    height: 30px;
+  }
+}
