@@ -22,9 +22,6 @@ let pomodoroTime = Number(timer.pomodoro) * 60
 let shortBreak = Number(timer.short) * 60
 let longBreak = Number(timer.long) * 60
 
-console.log(getTimers())
-console.log(pomodoroTime, shortBreak, shortBreak, longBreak)
-
 let timeLeft = pomodoroTime
 convertTimeForDisplay(timeLeft)
 

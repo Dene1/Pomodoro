@@ -73,8 +73,6 @@
   background-color: var(--modal-color);
 }
 
-//switch
-
 .switch {
   position: relative;
   display: inline-block;
@@ -82,14 +80,12 @@
   height: 34px;
 }
 
-/* Hide default HTML checkbox */
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-/* The slider */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -120,7 +116,6 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-/* Rounded sliders */
 .slider.round {
   border-radius: 34px;
 }
@@ -129,7 +124,6 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-/* Создаем свои стрелки */
 .settings-input-wrapper {
   position: relative;
   display: inline-block;
@@ -143,7 +137,6 @@ input:checked + .slider:before {
   width: 60px;
 }
 
-/* Стили для кастомных стрелок */
 .arrow-btn {
   position: absolute;
   width: 20px;
@@ -167,7 +160,6 @@ input:checked + .slider:before {
   border-radius: 0 0 3px 3px;
 }
 
-/* Иконки стрелок */
 .arrow-btn::after {
   content: "";
   width: 0;
@@ -184,7 +176,6 @@ input:checked + .slider:before {
   border-top: 5px solid #333;
 }
 
-/* Эффекты при наведении */
 .arrow-btn:hover {
   background-color: #4a90e2;
 }

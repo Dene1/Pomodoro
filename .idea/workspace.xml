@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8008ac52-0683-4927-a2f1-203438b4e317" name="Changes" comment="update (app): the application is almost ready">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/function/start-timer.js" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/_media.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/_mixins.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/blocks/_settings.scss" beforeDir="false" afterPath="$PROJECT_DIR$/styles/blocks/_settings.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/styles.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/styles/styles.css.map" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="SCSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop-0.5" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Dene1&quot;
+  }
+}</component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="develop" />
+                    <option name="lastUsedInstant" value="1753674743" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1753674742" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Dene1/Pomodoro.git&quot;,
+    &quot;accountId&quot;: &quot;cd9a4176-aae7-4244-9421-f004a6b5483e&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/index.js" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="30Lk8sqet2vwJqol7WpcALjmSK8" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showScratchesAndConsoles" value="false" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "develop-0.6",
+    "last_opened_file_path": "D:/Курс Junior/Проекты/Pomodoro/function",
+    "list.type.of.created.stylesheet": "SCSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.stylelint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.stylelint": "D:\\Курс Junior\\Проекты\\Pomodoro\\node_modules\\stylelint",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "D:\\Курс Junior\\Проекты\\Pomodoro\\node_modules\\prettier",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "ts.external.directory.path": "D:\\Курс Junior\\Проекты\\Pomodoro\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Курс Junior\Проекты\Pomodoro\function" />
+      <recent name="F:\Курс Junior\Проекты\Pomodoro\styles\blocks" />
+      <recent name="F:\Курс Junior\Проекты\Pomodoro\fonts" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Курс Junior\Проекты\Pomodoro\function\sound" />
+      <recent name="D:\Курс Junior\Проекты\Pomodoro\status ui" />
+      <recent name="F:\Курс Junior\Проекты\Pomodoro\assets\images\logo\light" />
+      <recent name="F:\Курс Junior\Проекты\Pomodoro\assets\images\logo\dark" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="active" />
+    </option>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-WS-253.31033.133" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\Denel\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8008ac52-0683-4927-a2f1-203438b4e317" name="Changes" comment="" />
+      <created>1753414084189</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1753414084189</updated>
+      <workItem from="1753414085318" duration="159000" />
+      <workItem from="1753415082465" duration="7091000" />
+      <workItem from="1753508792185" duration="11892000" />
+      <workItem from="1753593765345" duration="3715000" />
+      <workItem from="1753597531250" duration="3739000" />
+      <workItem from="1753602176762" duration="403000" />
+      <workItem from="1753602602474" duration="2168000" />
+      <workItem from="1753672049440" duration="15291000" />
+      <workItem from="1753772498732" duration="1278000" />
+      <workItem from="1753852058072" duration="10677000" />
+      <workItem from="1753870818575" duration="629000" />
+      <workItem from="1753938482943" duration="23000" />
+      <workItem from="1753948470574" duration="9000" />
+      <workItem from="1753952635583" duration="93000" />
+      <workItem from="1754025566828" duration="10000" />
+      <workItem from="1754025723270" duration="608000" />
+      <workItem from="1754217657806" duration="137000" />
+      <workItem from="1754217801550" duration="9000" />
+      <workItem from="1754217818482" duration="137000" />
+      <workItem from="1754218024920" duration="278000" />
+      <workItem from="1754218340310" duration="1000" />
+      <workItem from="1754218358853" duration="18000" />
+      <workItem from="1754218418684" duration="212000" />
+      <workItem from="1754218638664" duration="222000" />
+      <workItem from="1754218872838" duration="64000" />
+      <workItem from="1754218943930" duration="874000" />
+      <workItem from="1754219830634" duration="155000" />
+      <workItem from="1754219993457" duration="164000" />
+      <workItem from="1754220175047" duration="163000" />
+      <workItem from="1754220356397" duration="20000" />
+      <workItem from="1754220383319" duration="202000" />
+      <workItem from="1754220592980" duration="1023000" />
+      <workItem from="1754221633058" duration="228000" />
+      <workItem from="1754221877576" duration="352000" />
+      <workItem from="1754222263675" duration="214000" />
+      <workItem from="1754222488266" duration="933000" />
+      <workItem from="1754223436014" duration="1865000" />
+      <workItem from="1754288578173" duration="43000" />
+      <workItem from="1754289015091" duration="559000" />
+      <workItem from="1754289629760" duration="2252000" />
+      <workItem from="1754655568137" duration="2862000" />
+      <workItem from="1754661981471" duration="15017000" />
+      <workItem from="1754774603017" duration="8649000" />
+      <workItem from="1754826394740" duration="543000" />
+      <workItem from="1754826953487" duration="21000" />
+      <workItem from="1754826985382" duration="48000" />
+      <workItem from="1754827044654" duration="127000" />
+      <workItem from="1754827187601" duration="29000" />
+      <workItem from="1754827232210" duration="1066000" />
+      <workItem from="1754828315088" duration="14000" />
+      <workItem from="1754828349112" duration="126000" />
+      <workItem from="1754828487863" duration="123000" />
+      <workItem from="1754828620622" duration="2865000" />
+      <workItem from="1754831521791" duration="373000" />
+      <workItem from="1754831905394" duration="305000" />
+      <workItem from="1754832233015" duration="299000" />
+      <workItem from="1754832548918" duration="1397000" />
+      <workItem from="1754833968581" duration="5115000" />
+      <workItem from="1754839248018" duration="1574000" />
+      <workItem from="1754840843065" duration="348000" />
+      <workItem from="1754841202770" duration="560000" />
+      <workItem from="1754841784671" duration="2116000" />
+      <workItem from="1754843931364" duration="376000" />
+      <workItem from="1754844327596" duration="215000" />
+      <workItem from="1754844561456" duration="395000" />
+      <workItem from="1754844972204" duration="233000" />
+      <workItem from="1754845228266" duration="1628000" />
+      <workItem from="1754902216119" duration="901000" />
+      <workItem from="1754903175406" duration="28000" />
+      <workItem from="1754903339952" duration="781000" />
+      <workItem from="1754904134431" duration="603000" />
+      <workItem from="1755028765317" duration="7021000" />
+      <workItem from="1755074683991" duration="969000" />
+      <workItem from="1755087855251" duration="1456000" />
+      <workItem from="1755097451534" duration="3181000" />
+      <workItem from="1755114200276" duration="2131000" />
+      <workItem from="1755118708089" duration="1486000" />
+      <workItem from="1755210858997" duration="1195000" />
+      <workItem from="1755527630872" duration="1000" />
+      <workItem from="1755533823371" duration="1572000" />
+      <workItem from="1755549045636" duration="8191000" />
+      <workItem from="1755638555395" duration="1166000" />
+      <workItem from="1755896613408" duration="66000" />
+      <workItem from="1755896687203" duration="353000" />
+      <workItem from="1756037832758" duration="172000" />
+      <workItem from="1756066888338" duration="7380000" />
+      <workItem from="1756302768289" duration="253000" />
+      <workItem from="1756303053589" duration="38000" />
+      <workItem from="1756758093827" duration="8312000" />
+      <workItem from="1756809848607" duration="1000" />
+      <workItem from="1756842452688" duration="10762000" />
+      <workItem from="1756928637166" duration="7344000" />
+      <workItem from="1757023643160" duration="12023000" />
+      <workItem from="1757190332995" duration="11772000" />
+      <workItem from="1757273107835" duration="9718000" />
+      <workItem from="1757361282446" duration="2774000" />
+      <workItem from="1757414554900" duration="66000" />
+      <workItem from="1757417621535" duration="384000" />
+      <workItem from="1757418850517" duration="109000" />
+      <workItem from="1757419162050" duration="163000" />
+      <workItem from="1757419755948" duration="122000" />
+      <workItem from="1757419950734" duration="769000" />
+      <workItem from="1757446526545" duration="4843000" />
+      <workItem from="1757521859647" duration="14035000" />
+      <workItem from="1757596772514" duration="5597000" />
+      <workItem from="1757766096434" duration="169000" />
+      <workItem from="1757793375508" duration="152000" />
+      <workItem from="1757793919092" duration="44000" />
+      <workItem from="1758136719552" duration="6688000" />
+      <workItem from="1758223649810" duration="6593000" />
+      <workItem from="1758463828905" duration="3000" />
+      <workItem from="1758472830655" duration="6150000" />
+      <workItem from="1758492581907" duration="1654000" />
+      <workItem from="1758563541590" duration="17071000" />
+      <workItem from="1758660005029" duration="6547000" />
+      <workItem from="1758734760510" duration="9856000" />
+      <workItem from="1758833705364" duration="4953000" />
+      <workItem from="1758839923212" duration="90000" />
+      <workItem from="1758840030714" duration="29000" />
+      <workItem from="1758840075191" duration="715000" />
+      <workItem from="1758882885158" duration="35000" />
+      <workItem from="1758883825972" duration="118000" />
+      <workItem from="1758914976652" duration="958000" />
+      <workItem from="1759011414849" duration="2338000" />
+      <workItem from="1759014131409" duration="1182000" />
+      <workItem from="1759097207093" duration="606000" />
+      <workItem from="1759182152383" duration="5000" />
+      <workItem from="1759182174122" duration="1000" />
+      <workItem from="1759182707588" duration="2000" />
+      <workItem from="1759948695083" duration="893000" />
+      <workItem from="1759956267192" duration="9000" />
+      <workItem from="1759956333616" duration="2000" />
+      <workItem from="1759956346781" duration="15000" />
+      <workItem from="1759960586553" duration="17000" />
+      <workItem from="1774811964322" duration="1040000" />
+    </task>
+    <task id="LOCAL-00001" summary="init project">
+      <option name="closed" value="true" />
+      <created>1753674565217</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1753674565217</updated>
+    </task>
+    <task id="LOCAL-00002" summary="init project">
+      <option name="closed" value="true" />
+      <created>1754223559112</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1754223559112</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add: styles and prettier">
+      <option name="closed" value="true" />
+      <created>1756766686077</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1756766686077</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat(timer): add timer functionality&#10;feat(switch): add  functionality&#10;feat(reset): add  functionality">
+      <option name="closed" value="true" />
+      <created>1756767022670</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1756767022670</updated>
+    </task>
+    <task id="LOCAL-00005" summary="update(counter): save counter in local host functionality&#10;fix(buttons): correct works buttons">
+      <option name="closed" value="true" />
+      <created>1756852985442</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1756852985442</updated>
+    </task>
+    <task id="LOCAL-00006" summary="add(function): of resetting the counter help, when clicking on the counter">
+      <option name="closed" value="true" />
+      <created>1756935460100</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1756935460100</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fix(function): buttons of timer">
+      <option name="closed" value="true" />
+      <created>1757032937224</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1757032937224</updated>
+    </task>
+    <task id="LOCAL-00008" summary="add (function): implemented the slider switching function">
+      <option name="closed" value="true" />
+      <created>1757284075331</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1757284075331</updated>
+    </task>
+    <task id="LOCAL-00009" summary="update (function): сorrected the settings of time of timers">
+      <option name="closed" value="true" />
+      <created>1757536007582</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1757536007582</updated>
+    </task>
+    <task id="LOCAL-00010" summary="add (function): add button slider for change theme">
+      <option name="closed" value="true" />
+      <created>1758143336503</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1758143336503</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fix (function): change theme&#10;fix(): change timer mode">
+      <option name="closed" value="true" />
+      <created>1758230159654</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1758230159654</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fix (function): change color theme">
+      <option name="closed" value="true" />
+      <created>1758666582432</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1758666582432</updated>
+    </task>
+    <task id="LOCAL-00013" summary="update (app): the application is almost ready">
+      <option name="closed" value="true" />
+      <created>1759013660436</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1759013660436</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init project" />
+    <MESSAGE value="add: styles and prettier" />
+    <MESSAGE value="feat(timer): add timer functionality&#10;feat(switch): add  functionality&#10;feat(reset): add  functionality" />
+    <MESSAGE value="update(counter): save counter in local host functionality&#10;fix(buttons): correct works buttons" />
+    <MESSAGE value="add(function): of resetting the counter help, when clicking on the counter" />
+    <MESSAGE value="fix(function): buttons of timer" />
+    <MESSAGE value="add (function): implemented the slider switching function" />
+    <MESSAGE value="update (function): сorrected the settings of time of timers" />
+    <MESSAGE value="add (function): add button slider for change theme" />
+    <MESSAGE value="fix (function): change theme&#10;fix(): change timer mode" />
+    <MESSAGE value="fix (function): change color theme" />
+    <MESSAGE value="update (app): the application is almost ready" />
+    <option name="LAST_COMMIT_MESSAGE" value="update (app): the application is almost ready" />
+  </component>
+</project>
