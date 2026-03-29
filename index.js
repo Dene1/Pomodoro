@@ -8,8 +8,8 @@ import {
   saveTimersToLocalStorage,
   getTheme,
   updateButtonIcon
-} from './function'
-import { pomodoroTitle, shortTitle, longTitle } from './status-ui'
+} from './function/index.js'
+import { pomodoroTitle, shortTitle, longTitle } from './status-ui/index.js'
 
 const resetButton = document.querySelector('.main__controls__reset')
 const nextButton = document.querySelector('.main__controls__next')
